@@ -1,0 +1,14 @@
+name: Hello DevCalc
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mensagem de boas-vindas
+        run: echo "Pipeline iniciado com sucesso"
