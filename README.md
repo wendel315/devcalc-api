@@ -1,12 +1,13 @@
-# DevCalc API
+# DevCalc API ![CI](https://github.com/seu-usuario/devcalc-api/actions/workflows/ci.yml/badge.svg)
 
-API REST simples de calculadora desenvolvida em Java com o framework Javalin. Este projeto foi criado com o objetivo de demonstrar a aplicação prática de Integração Contínua (CI) e Simulação de Entrega Contínua (CD) com GitHub Actions.
+API REST simples de calculadora desenvolvida em Java com o framework Javalin.  
+O objetivo é praticar conceitos de Integração Contínua (CI) e Entrega Contínua (CD) utilizando GitHub Actions.
 
 ---
 
-## 📌 Funcionalidades da API
+## 🔧 Funcionalidades da API
 
-A API possui os seguintes endpoints de operações matemáticas:
+A API realiza as operações matemáticas básicas:
 
 - `GET /add?a=10&b=5` → Soma (10 + 5)
 - `GET /subtract?a=10&b=5` → Subtração (10 - 5)
@@ -18,20 +19,20 @@ A API possui os seguintes endpoints de operações matemáticas:
 ## 🚀 Tecnologias Utilizadas
 
 - Java 17
-- [Javalin](https://javalin.io/)
+- Javalin
 - Maven
-- JUnit 5
+- JUnit
 - GitHub Actions
 
 ---
 
-## 🛠️ Como executar localmente
+## 💻 Como executar localmente
 
-### Pré-requisitos
-- Java 17 instalado
-- Maven instalado
+### ✅ Pré-requisitos
+- Java 17
+- Maven
 
-### Passos para rodar a aplicação
+### ✅ Passos
 
 1. Clone o repositório:
 ```bash
@@ -49,14 +50,14 @@ mvn clean install
 mvn exec:java -Dexec.mainClass="com.devcalc.App"
 ```
 
-4. Acesse os endpoints via navegador ou Postman:
+4. Acesse os endpoints:
 ```
 http://localhost:7000/add?a=10&b=5
 ```
 
 ---
 
-## ✅ Como rodar os testes
+## 🧪 Rodando os testes
 
 ```bash
 mvn test
@@ -64,13 +65,12 @@ mvn test
 
 ---
 
-## 📦 Como gerar o `.jar`
+## 📦 Gerando o `.jar`
 
 ```bash
 mvn package
 ```
-
-O arquivo será gerado em:  
+O arquivo será gerado em:
 ```
 target/devcalc-api-1.0-SNAPSHOT.jar
 ```
@@ -79,30 +79,37 @@ target/devcalc-api-1.0-SNAPSHOT.jar
 
 ## ⚙️ Workflows Automatizados
 
-### Arquivo: `.github/workflows/ci.yml`
-
-O projeto possui um workflow CI/CD que realiza:
+O projeto possui um pipeline de CI/CD configurado com GitHub Actions que realiza:
 
 | Job       | Descrição                                   |
-|-----------|---------------------------------------------|
-| checkout  | Clona o repositório                         |
-| build     | Instala o Java 17 e roda `mvn clean install`|
-| test      | Executa os testes automatizados             |
-| package   | Gera o JAR com `mvn package`                |
-| deploy    | Simula um deploy com a mensagem no console  |
+|------------|---------------------------------------------|
+| checkout   | Checkout do repositório                    |
+| build      | Instala Java e executa `mvn clean install` |
+| test       | Executa os testes automatizados            |
+| package    | Gera o JAR com `mvn package`               |
+| deploy     | Simula um deploy com uma mensagem no log   |
 
 ### 🔁 Gatilhos configurados:
-
-- Pushs na branch `main` que alterem arquivos em `src/**`
-- Pull Requests que alterem arquivos em `src/**`
-- Execução manual via GitHub Actions (workflow_dispatch)
+- ✅ Push na branch `main` que altere arquivos dentro de `src/**`.
+- ✅ Pull Request que altere arquivos em `src/**`.
+- ✅ Execução manual usando o botão **“Run workflow”** no GitHub.
 
 ---
 
-## 🧪 Execução manual
+## 🐞 Correção de Erro no Pipeline
 
-Você pode executar manualmente o pipeline:
+Um erro foi introduzido manualmente usando `exit 1` no job de **build**.  
+Ao executar o pipeline, foi possível observar na aba **Actions** que o job falhou exatamente no step `"Simular erro proposital"`.
 
-1. Vá até a aba **Actions** no GitHub
-2. Selecione o workflow `CI DevCalc`
-3. Clique em **Run workflow** para executá-lo manualmente
+A correção foi feita removendo esse step, e após o push o pipeline voltou a funcionar normalmente.
+
+---
+
+## 🚦 Observações sobre execução manual x automática
+
+- **Execução automática (push/pull request):** É acionada sempre que há alterações em arquivos na pasta `src/**` na branch `main`.
+- **Execução manual:** Permite executar o pipeline na aba **Actions**, podendo escolher parâmetros (se configurados) como executar ou não os testes e o package.
+
+Essa abordagem permite maior controle e flexibilidade sobre as execuções, simulando pipelines reais de projetos profissionais.
+
+---
