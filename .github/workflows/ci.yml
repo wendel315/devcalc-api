@@ -6,15 +6,15 @@ on:
   workflow_dispatch:
     inputs:
       run_lint:
-        description: "Executar Lint"
+        description: "Executar Lint?"
         required: true
-        type: boolean
         default: true
+        type: boolean
       run_tests:
-        description: "Executar Testes"
+        description: "Executar Testes?"
         required: true
-        type: boolean
         default: true
+        type: boolean
 
 jobs:
   chamar-workflow-lint-e-test:
