@@ -22,3 +22,4 @@ jobs:
     with:
       run_lint: ${{ inputs.run_lint }}
       run_tests: ${{ inputs.run_tests }}
+    secrets: inherit
