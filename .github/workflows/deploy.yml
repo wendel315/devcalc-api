@@ -1,0 +1,29 @@
+name: Deploy Pipeline
+
+on:
+  push:
+    branches:
+      - dev
+      - main
+
+jobs:
+  deploy-dev:
+    if: github.ref == 'refs/heads/dev'
+    runs-on: ubuntu-latest
+    environment:
+      name: dev
+    steps:
+      - name: Deploy em Dev
+        run:
+          echo "Deploy automático em Dev - URL: ${{ vars.API_URL }}"
+
+
+  deploy-prod:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: prod
+    steps:
+      - name: Deploy em Prod
+        run:
+          echo "Deploy em Produção com segredo: ${{ secrets.PROD_SECRET }}"
