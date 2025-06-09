@@ -1,0 +1,24 @@
+name: Criação de Issue Automática
+
+on:
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  issue-creator:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checar Condição Simulada
+        id: check_condition
+        run: echo "condition_met=true" >> $GITHUB_ENV
+
+      - name: Criar Issue se condição for verdadeira
+        if: env.condition_met == 'true'
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/issues \
+            -d '{"title":"Problema detectado","body":"Uma falha foi detectada no pipeline."}'
