@@ -1,0 +1,23 @@
+name: Demonstração de Contextos e Escopos
+
+on:
+  workflow_dispatch:
+
+env:
+  STAGE: dev
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    env:
+      JOB_VAR: "job-level"
+    steps:
+      - name: Exibir Contextos
+        env:
+          STEP_VAR: "step-level"
+        run: |
+          echo "Usuário que acionou: ${{ github.actor }}"
+          echo "Sistema operacional do runner: ${{ runner.os }}"
+          echo "Variável STAGE (workflow): $STAGE"
+          echo "Variável JOB_VAR (job): $JOB_VAR"
+          echo "Variável STEP_VAR (step): $STEP_VAR"
