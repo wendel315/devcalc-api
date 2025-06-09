@@ -1,0 +1,21 @@
+name: Runner Auto-Hospedado
+
+on:
+  workflow_dispatch:
+
+jobs:
+  self-hosted-job:
+    runs-on: self-hosted
+    steps:
+      - name: Exibir Sistema Operacional
+        run: uname -a
+
+      - name: Verificar Versão Java
+        run: java -version
+
+      - name: Instalar Software Adicional
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cowsay
+      - name: Verificar Instalação do cowsay
+        run: cowsay "Runner pronto!"
