@@ -18,4 +18,14 @@ public class CalculatorServiceTest {
 
     @Test
     void testDivide() { assertEquals(2, service.divide(10, 5)); }
+
+    @Test
+    public void testSqrt() throws Exception {
+        double x = 16;
+        double expected = 4.0;
+        CalculatorService calculatorService = new CalculatorService();
+        double result = calculatorService.sqrt(x);
+        assertEquals(expected, result, 0.0001);
+    }
+
 }

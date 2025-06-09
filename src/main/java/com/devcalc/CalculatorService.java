@@ -17,4 +17,9 @@ public class CalculatorService {
     public int divide(int a, int b) {
         return a / b;
     }
+
+    public double sqrt(double x) {
+        return Math.sqrt(x);
+    }
+
 }
